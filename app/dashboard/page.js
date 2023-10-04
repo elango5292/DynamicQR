@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 
 import useSWR from 'swr'
 
-const fetcher = (...args: any[]) => fetch(...args).then((res: { json: () => any; }) => res.json())
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 import {
     Accordion,
@@ -56,7 +56,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { resolveAny } from "dns";
  
 
 
