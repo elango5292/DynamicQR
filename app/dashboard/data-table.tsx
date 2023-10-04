@@ -27,13 +27,13 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
-  funccs: ((...args: any[]) => any)[];
+
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,funccs
-}: DataTableProps<TData, TValue>,) {
+  data,
+}: DataTableProps<TData, TValue>,funccs:any) {
     const [sorting, setSorting] = React.useState([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
