@@ -2,20 +2,8 @@
 
 import * as React from "react"
 
-import { Button } from "@/components/ui/button"
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 
 import {
     ColumnFiltersState,
@@ -39,13 +27,14 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  funccs: ((...args: any[]) => any)[];
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
-}: DataTableProps<TData, TValue>,funccs: any) {
-    const [sorting, setSorting] = React.useState<SortingState>([])
+  data,funccs
+}: DataTableProps<TData, TValue>,) {
+    const [sorting, setSorting] = React.useState([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
@@ -68,7 +57,7 @@ export function DataTable<TData, TValue>({
         <Input
           placeholder="Search by name..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
+          onChange={(event:any) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
@@ -77,9 +66,9 @@ export function DataTable<TData, TValue>({
       <div className="rounded-md border">
       <Table>
         <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
+          {table.getHeaderGroups().map((headerGroup:any) => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
+              {headerGroup.headers.map((header:any) => {
                 return (
                   <TableHead key={header.id}>
                     {header.isPlaceholder
@@ -97,12 +86,12 @@ export function DataTable<TData, TValue>({
         </TableHeader>
         <TableBody>
           {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
+            table.getRowModel().rows.map((row:any) => (
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"} className="items-center"
               >
-                {row.getVisibleCells().map((cell) => (
+                {row.getVisibleCells().map((cell:any) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
