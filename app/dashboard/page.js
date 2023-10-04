@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 
 import useSWR from 'swr'
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args: any[]) => fetch(...args).then((res: { json: () => any; }) => res.json())
 
 import {
     Accordion,
@@ -146,14 +146,13 @@ function Page ({datem,setem}) {
 
   async function generateQR (text) {
     try {
-      setQRDataURL(await QRCode.toDataURL("https://google.com/"+text))
+      setQRDataURL(await QRCode.toDataURL("https://www.dynqr.vercel.app/"+text))
     } catch (err) {
       console.error(err)
     }
   }
 
 function f1(item){
-    // setactiveid(previd =>id)
     settext(previd =>item.id) 
         setname(previd =>item.name) 
         setcontent(previd =>item.content)
@@ -164,7 +163,6 @@ function f1(item){
 }
 
 function f2(item){
-    // setactiveid(previd =>id)
     settext(previd =>item.id) 
         setname(previd =>item.name) 
         setcontent(previd =>item.content)
@@ -233,12 +231,6 @@ const funccs = [f1,f2]
 </DialogContent>
 </Dialog>}
     
-    {/* <div className="mx-9 flex justify-center items-center">
-    <Accordion type="single" collapsible className="w-1/2">
-    <Page datem={datem} setem={setem}></Page>
-        </Accordion>
-    
-        </div> */}
         
         <div className="container mx-auto py-10">
         <h1 className="my-2 mx-auto ">Manage QR</h1>
